@@ -1,0 +1,105 @@
+/* ══ 无限视图 ════════════════════════════════════════════════
+   世界层只做一次 translate；格子全部绝对定位在里面。
+   不缩放（漫游靠移动，不靠 zoom），所以不需要 scale。
+   ------------------------------------------------------------ */
+
+.inf {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  cursor: grab;
+  touch-action: none;
+  background: var(--bg-app);
+}
+
+.inf[data-drag] { cursor: grabbing; }
+
+.inf-world {
+  position: absolute;
+  top: 0;
+  left: 0;
+  will-change: transform;
+}
+
+.inf-item {
+  position: absolute;
+  border-radius: var(--radius-thumb, 4px);
+  outline: 0.5px solid var(--line-content, rgba(0, 0, 0, 0.1));
+  outline-offset: -0.5px;
+  cursor: zoom-in;
+  overflow: hidden;
+  transition: filter var(--dur-fast, 140ms) var(--ease-standard, cubic-bezier(0.2, 0, 0, 1));
+}
+
+.inf-item:hover { filter: brightness(1.03); }
+
+.inf-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  pointer-events: none;
+}
+
+/* 选中：外近黑 + 内白，与网格、画布保持同一套 */
+.inf-item[data-selected]::before,
+.inf-item[data-selected]::after {
+  content: "";
+  position: absolute;
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+.inf-item[data-selected]::before {
+  inset: 0;
+  border: 1.5px solid var(--selection-ring, #1a1a1a);
+}
+
+.inf-item[data-selected]::after {
+  inset: 1.5px;
+  border: 1px solid rgba(255, 255, 255, 0.85);
+}
+
+.inf-hud {
+  position: absolute;
+  left: 16px;
+  bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 8px;
+  border-radius: var(--radius-pill, 18px);
+  background: var(--bg-elevated, #fff);
+  border: 0.5px solid var(--line-1, rgba(0, 0, 0, 0.08));
+  box-shadow: var(--shadow-float);
+  cursor: default;
+}
+
+.inf-btn {
+  height: 26px;
+  padding: 0 10px;
+  border: 0;
+  border-radius: 13px;
+  background: transparent;
+  color: var(--text-2, #5f5f5f);
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.inf-btn:hover { background: var(--bg-hover, rgba(0, 0, 0, 0.045)); color: var(--text-1, #1a1a1a); }
+
+.inf-pos {
+  font-size: 11px;
+  color: var(--text-3, #999);
+  font-variant-numeric: tabular-nums;
+  padding-right: 4px;
+}
+
+.inf-hint {
+  position: absolute;
+  right: 16px;
+  bottom: 20px;
+  font-size: 11px;
+  color: var(--text-3, #999);
+  pointer-events: none;
+}

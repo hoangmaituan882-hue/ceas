@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="380" viewBox="0 0 1280 380" role="img" aria-labelledby="title description">
+  <title id="title">Ceas — 灵感有序，文件自由</title>
+  <desc id="description">中性浅色背景，Ceas 双眼图标与普通文件夹结构组成的项目封面。</desc>
+  <rect width="1280" height="380" rx="18" fill="#fafafa"/>
+  <path d="M52 322H1228" stroke="#1a1a1a" stroke-opacity=".08"/>
+  <g transform="translate(62 68) scale(.86)">
+    <path fill="#1a1a1a" d="M30 6H70A24 24 0 0 1 94 30V70A24 24 0 0 1 70 94H30A24 24 0 0 1 6 70V30A24 24 0 0 1 30 6Z"/>
+    <rect x="28.66" y="41.2" width="10.12" height="17.6" rx="5.06" fill="#fafafa"/>
+    <rect x="61.22" y="41.2" width="10.12" height="17.6" rx="5.06" fill="#fafafa"/>
+  </g>
+  <g font-family="Inter,Segoe UI,Microsoft YaHei,sans-serif">
+    <text x="166" y="133" font-size="64" font-weight="500" letter-spacing="-3" fill="#1a1a1a">Ceas</text>
+    <text x="64" y="209" font-size="32" font-weight="400" fill="#1a1a1a">灵感有序，文件自由。</text>
+    <text x="66" y="251" font-size="16" fill="#5f5f5f">A quiet home for visual references. Your files stay yours.</text>
+    <text x="65" y="350" font-size="12" letter-spacing="2" fill="#5f5f5f">LOCAL FIRST  /  OPEN FOLDERS  /  THREE WAYS TO EXPLORE</text>
+  </g>
+  <g transform="translate(862 66)" fill="none" stroke="#1a1a1a" stroke-width="1.5">
+    <path d="M2 40V12Q2 2 12 2H91L110 22H276Q286 22 286 32V222Q286 232 276 232H12Q2 232 2 222Z" fill="#f4f4f4" stroke-opacity=".18"/>
+    <path d="M34 75H252M34 117H252M34 159H252M34 201H190" stroke-opacity=".1"/>
+    <rect x="34" y="52" width="30" height="16" rx="4" fill="#1a1a1a" stroke="none"/>
+    <rect x="34" y="92" width="16" height="16" rx="4" stroke-opacity=".42"/>
+    <rect x="34" y="134" width="16" height="16" rx="4" stroke-opacity=".42"/>
+    <rect x="34" y="176" width="16" height="16" rx="4" stroke-opacity=".42"/>
+    <g font-family="Consolas,monospace" font-size="13" fill="#5f5f5f" stroke="none">
+      <text x="79" y="65">My references/</text>
+      <text x="66" y="105">Forms/</text>
+      <text x="66" y="147">Typography/</text>
+      <text x="66" y="189">Spaces/</text>
+    </g>
+  </g>
+</svg>

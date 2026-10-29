@@ -1,0 +1,6 @@
+.file-issues-dialog { max-height: calc(100dvh - var(--grid-gap) * 4); overflow: auto; }
+.file-issue { display: flex; flex-direction: column; gap: var(--radius-thumb); padding-block: var(--grid-gap); border-top: calc(var(--radius-thumb) / 8) solid var(--line-1); overflow-wrap: anywhere; }
+.file-issue p { margin: 0; }
+.file-issue strong { font-weight: 500; }
+.file-issue-path { color: var(--text-2); }
+.file-state-badge { position: absolute; inset-block-start: var(--radius-thumb); inset-inline-start: var(--radius-thumb); max-width: calc(100% - var(--grid-gap)); padding: var(--radius-thumb); color: var(--text-1); background: var(--bg-elevated); border: calc(var(--radius-thumb) / 8) solid var(--line-content); border-radius: var(--radius-item); font-size: var(--font-sub); pointer-events: none; }

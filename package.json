@@ -1,0 +1,40 @@
+{
+  "name": "ceas",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@10.32.1",
+  "scripts": {
+    "dev": "pnpm --filter @ceas/desktop dev",
+    "build": "pnpm --filter @ceas/desktop build",
+    "guard": "node scripts/check-paths.mjs",
+    "icons": "python scripts/gen-icons.py",
+    "typecheck": "pnpm --filter @ceas/desktop typecheck",
+    "check": "node scripts/check-paths.mjs && pnpm --filter @ceas/desktop typecheck",
+    "test:query": "node --test scripts/item-query.test.mjs",
+    "test:collections": "node --test scripts/collection-model.test.mjs",
+    "test:acquisition": "node --test scripts/acquisition.test.mjs",
+    "check:acquisition-ui": "node scripts/check-acquisition.mjs",
+    "check:acquisition-native": "node scripts/check-native-acquisition.mjs",
+    "check:collections-ui": "node scripts/check-collections.mjs",
+    "check:collections-native": "node scripts/check-native-collections.mjs",
+    "test:files": "node --test scripts/file-reconcile.test.mjs scripts/import-failure.test.mjs",
+    "check:files-ui": "node scripts/check-file-coordination.mjs",
+    "check:files-native": "node scripts/check-native-file-coordination.mjs",
+    "test:library": "node --test scripts/library-model.test.mjs",
+    "check:query-design": "node scripts/check-query-design.mjs",
+    "check:query-ui": "node scripts/check-query-tools.mjs",
+    "test:storage": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/test-storage.ps1",
+    "check:storage-ui": "node scripts/check-library-management.mjs",
+    "check:storage-native": "node scripts/check-native-library-management.mjs",
+    "check:library-ui": "node scripts/check-library-management.mjs",
+    "check:library-management": "node scripts/check-library-management.mjs",
+    "check:library-native": "node scripts/check-native-library-management.mjs",
+    "desktop": "tauri dev",
+    "desktop:build": "tauri build",
+    "desktop:info": "tauri info"
+  },
+  "devDependencies": {
+    "@tauri-apps/cli": "^2.10.0",
+    "playwright": "^1.61.1"
+  }
+}

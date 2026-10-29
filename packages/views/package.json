@@ -1,0 +1,22 @@
+{
+  "name": "@ceas/views",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./index.ts",
+    "./grid/layout": "./grid/layout.ts",
+    "./grid/masonry": "./grid/masonry.ts",
+    "./canvas/canvas": "./canvas/canvas.tsx",
+    "./canvas/canvas.css": "./canvas/canvas.css",
+    "./viewport": "./viewport.ts",
+    "./infinity/infinity": "./infinity/infinity.tsx",
+    "./infinity/infinity.css": "./infinity/infinity.css"
+  },
+  "dependencies": {
+    "react": "^19.2.8"
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.17"
+  }
+}

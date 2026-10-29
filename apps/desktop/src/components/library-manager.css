@@ -1,0 +1,43 @@
+/* 资料库管理与独立交互原型共用；视觉刻度来自现有主题/密度。 */
+.library-space { min-height: 100%; margin: 0; overflow: auto; background: var(--bg-app); color: var(--text-1); font: var(--font-body)/1.45 var(--font-sans); padding: calc(var(--grid-gap) * 2); box-sizing: border-box; }
+.library-space * { box-sizing: border-box; }
+.library-shell { width: min(100%, calc(var(--row-target) * 4)); margin: auto; display: flex; flex-direction: column; gap: calc(var(--grid-gap) * 2); }
+.library-heading, .library-actions, .library-item-head { display: flex; align-items: center; gap: var(--grid-gap); flex-wrap: wrap; }
+.library-heading { justify-content: space-between; }
+.library-space h1, .library-space h2 { margin: 0; font-size: var(--font-body); font-weight: 500; }
+.library-space strong { font-weight: 500; }
+.library-space p { margin: 0; }
+.library-intro { padding-block: calc(var(--grid-gap) * 2); display: grid; justify-items: center; gap: var(--grid-gap); text-align: center; }
+.library-mascot { width: calc(var(--grid-gap) * 6); height: calc(var(--grid-gap) * 6); display: grid; place-items: center; }
+.library-options { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--grid-gap); }
+.library-option, .library-card { border: calc(var(--radius-thumb) / 8) solid var(--line-1); border-radius: var(--radius-panel); background: var(--bg-elevated); padding: calc(var(--grid-gap) * 1.5); text-align: left; }
+.library-option { display: flex; flex-direction: column; align-items: start; gap: var(--grid-gap); min-width: 0; cursor: pointer; font: inherit; color: inherit; }
+.library-option:hover { background: var(--bg-hover); }
+.library-option svg, .library-item-head svg { width: var(--icon); height: var(--icon); flex-shrink: 0; }
+.library-muted { color: var(--text-2); }
+.library-small { font-size: var(--font-sub); color: var(--text-2); }
+.library-card { display: flex; flex-direction: column; gap: var(--grid-gap); }
+.library-list { display: flex; flex-direction: column; gap: var(--grid-gap); }
+.library-list .library-card[data-current] { border-color: var(--selection-ring); }
+.library-item-head strong { font-weight: 500; flex: 1; min-width: 0; overflow-wrap: anywhere; }
+.library-badge { background: var(--bg-rail); padding: var(--radius-thumb) var(--grid-gap); border-radius: var(--radius-item); font-size: var(--font-sub); }
+.library-path { overflow-wrap: anywhere; user-select: text; color: var(--text-2); }
+.library-btn { font: inherit; color: var(--text-1); min-height: calc(var(--rail-row) + var(--radius-thumb) * 2); padding: var(--radius-thumb) var(--grid-gap); background: var(--bg-elevated); border: calc(var(--radius-thumb) / 8) solid var(--line-content); border-radius: var(--radius-item); cursor: pointer; }
+.library-btn[data-primary] { background: var(--text-1); color: var(--bg-elevated); border-color: var(--text-1); }
+.library-btn[data-danger] { color: var(--danger); }
+.library-btn:disabled { cursor: default; opacity: .5; }
+.library-btn:hover:not(:disabled) { filter: brightness(.94); }
+.library-space :is(button,input,select):focus-visible { outline: calc(var(--radius-thumb) / 2) solid var(--selection-ring); outline-offset: calc(var(--radius-thumb) / 2); }
+.library-form { display: flex; flex-direction: column; gap: var(--grid-gap); width: min(100%, calc(var(--row-target) * 2.5)); }
+.library-field { display: flex; flex-direction: column; gap: var(--radius-thumb); }
+.library-field input, .library-field select { font: inherit; color: var(--text-1); background: var(--bg-app); border: calc(var(--radius-thumb) / 8) solid var(--line-content); border-radius: var(--radius-item); min-height: calc(var(--rail-row) + var(--radius-thumb) * 2); padding: var(--radius-thumb) var(--grid-gap); min-width: 0; width: 100%; }
+.library-choice { display: flex; align-items: start; gap: var(--grid-gap); }
+.library-choice input { margin-block-start: var(--radius-thumb); }
+.library-error { color: var(--danger); padding: var(--grid-gap); border: calc(var(--radius-thumb) / 8) solid var(--danger); border-radius: var(--radius-item); overflow-wrap: anywhere; }
+.library-progress { width: 100%; accent-color: var(--text-1); }
+.library-footer { display: flex; justify-content: space-between; align-items: center; gap: var(--grid-gap); flex-wrap: wrap; padding-block: var(--grid-gap); border-top: calc(var(--radius-thumb) / 8) solid var(--line-1); }
+.library-overlay { position: fixed; inset: 0; z-index: 90; }
+.library-back { display: flex; gap: var(--grid-gap); align-items: center; }
+.library-header-name { max-width: var(--row-target); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.library-header-manage svg { width: var(--icon); height: var(--icon); transform: rotate(90deg); }
+.library-space [hidden] { display: none; }

@@ -1,0 +1,72 @@
+/* 沿用现有主题和密度变量，检索工具不另建视觉刻度。 */
+.library-tools { position: relative; display: flex; align-items: center; gap: inherit; }
+/* 浏览器默认按钮内边距会挤偏密度放大后的 SVG；底色和图标共用按钮中心。 */
+.mini-capsule .icon-btn { padding: 0; flex-shrink: 0; }
+.query-icon { width: var(--icon); height: var(--icon); }
+.query-panel {
+  position: absolute;
+  inset-inline-end: 0;
+  inset-block-start: calc(100% + var(--grid-gap));
+  z-index: 45;
+  display: flex;
+  flex-direction: column;
+  gap: var(--grid-gap);
+  width: min(calc(var(--row-target) * 1.5), calc(100vw - var(--grid-gap) * 2));
+  max-height: 75vh;
+  overflow: hidden;
+  padding: var(--grid-gap);
+  border: calc(var(--radius-thumb) / 8) solid var(--line-1);
+  border-radius: var(--radius-panel);
+  background: var(--bg-elevated);
+  box-shadow: var(--shadow-float);
+  color: var(--text-1);
+  font-size: var(--font-body);
+}
+.query-panel-head { display: flex; justify-content: space-between; align-items: center; gap: var(--grid-gap); }
+.query-panel-head strong { font-weight: 500; }
+.query-field, .query-fields { display: flex; flex-direction: column; gap: var(--grid-gap); min-width: 0; }
+.query-fields { overflow: auto; min-height: 0; scrollbar-width: thin; }
+.query-field { font-size: var(--font-body); }
+.query-field input, .query-field select {
+  width: 100%;
+  min-width: 0;
+  min-height: var(--rail-row);
+  padding: var(--radius-thumb) var(--grid-gap);
+  border: calc(var(--radius-thumb) / 8) solid var(--line-content);
+  border-radius: var(--radius-item);
+  background: var(--bg-app);
+  color: var(--text-1);
+  font: inherit;
+  color-scheme: light;
+}
+:root[data-theme="dark"] .query-field :is(input, select) { color-scheme: dark; }
+.query-action {
+  min-height: var(--rail-row);
+  padding: var(--radius-thumb) var(--grid-gap);
+  border: calc(var(--radius-thumb) / 8) solid var(--line-1);
+  border-radius: var(--radius-item);
+  background: var(--bg-hover);
+  color: var(--text-1);
+  font: inherit;
+  cursor: pointer;
+}
+.query-action:hover:not(:disabled) { background: var(--bg-active); }
+.query-action:disabled { color: var(--text-3); cursor: default; }
+.query-panel :is(input, select, button):focus-visible, .query-action:focus-visible {
+  outline: calc(var(--radius-thumb) / 2) solid var(--selection-ring);
+  outline-offset: calc(var(--radius-thumb) / 2);
+}
+.query-help, .query-result { margin: 0; color: var(--text-2); font-size: var(--font-body); }
+.query-error { margin: 0; color: var(--danger); }
+.query-summary {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--grid-gap);
+  padding: var(--grid-gap);
+  color: var(--text-2);
+  font-size: var(--font-body);
+}
+.query-term { max-width: 100%; overflow-wrap: anywhere; }
+.query-empty { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: var(--grid-gap); padding: var(--grid-gap); }
+.query-empty p { margin: 0; }

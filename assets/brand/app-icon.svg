@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="512" height="512" role="img" aria-label="眼珠球：近黑圆角方块与两只竖眼">
+  <title>应用图标 · 眼珠球</title>
+  <path fill="#1a1a1a" stroke="#ffffff" stroke-opacity="0.12" stroke-width="0.6"
+        d="M30 6 H70 A24 24 0 0 1 94 30 V70 A24 24 0 0 1 70 94 H30 A24 24 0 0 1 6 70 V30 A24 24 0 0 1 30 6 Z" />
+  <rect x="28.66" y="41.2" width="10.12" height="17.6" rx="5.06" fill="#fafafa" />
+  <rect x="61.22" y="41.2" width="10.12" height="17.6" rx="5.06" fill="#fafafa" />
+</svg>

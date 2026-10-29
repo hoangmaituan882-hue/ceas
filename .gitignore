@@ -1,0 +1,56 @@
+# ── 依赖与构建产物 ─────────────────────────────
+node_modules/
+dist/
+build/
+target/
+*.tsbuildinfo
+
+# ── 本地缓存（全部在 .cache，绝不进版本库）─────
+.cache/
+
+# ── 项目内工具（pnpm 本体等，不进版本库）──────
+.tools/
+
+# 本机协作记录、资料库和生成的 Tauri schema
+.workbuddy/
+src-tauri/gen/
+ceas-config/
+.ceas/
+.pixcall/
+*.db
+*.db-*
+*.sqlite
+*.sqlite3
+*.sqlite-*
+
+# ── 系统与编辑器 ───────────────────────────────
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.shared.json
+.idea/
+
+# ── 本地环境与密钥 ─────────────────────────────
+.env
+.env.local
+.env.*
+!.env.example
+*.local
+*.pem
+*.key
+!docs/**/*.key.md
+
+# ── 运行时产物 ─────────────────────────────────
+*.log
+logs/
+coverage/
+playwright-report/
+test-results/
+*.exe
+*.msi
+*.pfx
+*.p12
+*.zip
+*.7z

@@ -1,0 +1,127 @@
+/* ══ 画布 ════════════════════════════════════════════════════
+   世界层只做一次 transform，素材全部绝对定位在里面。
+   不要用 left/top 做动画，也不要在世界层上挂 filter。
+   ------------------------------------------------------------ */
+
+.cv {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  cursor: grab;
+  touch-action: none;
+  background: var(--bg-app);
+}
+
+/* 拖动中（平移或移动素材）统一用「抓住」的手型 */
+.cv[data-drag] { cursor: grabbing; }
+.cv[data-drag] .cv-item { cursor: grabbing; }
+
+.cv-world {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform-origin: 0 0;
+  will-change: transform;
+}
+
+.cv-item {
+  position: absolute;
+  border-radius: var(--radius-thumb, 4px);
+  outline: 0.5px solid var(--line-content, rgba(0, 0, 0, 0.1));
+  outline-offset: -0.5px;
+  cursor: grab;
+  transition: filter var(--dur-fast, 140ms) var(--ease-standard, cubic-bezier(0.2, 0, 0, 1));
+}
+
+.cv-item:hover { filter: brightness(1.03); }
+
+.cv-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: inherit;
+  display: block;
+  pointer-events: none;
+}
+
+/* 选中：外近黑 + 内白，双环，适配任意明暗素材 */
+.cv-item[data-selected]::before,
+.cv-item[data-selected]::after {
+  content: "";
+  position: absolute;
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+.cv-item[data-selected]::before {
+  inset: 0;
+  border: 1.5px solid var(--selection-ring, #1a1a1a);
+}
+
+.cv-item[data-selected]::after {
+  inset: 1.5px;
+  border: 1px solid rgba(255, 255, 255, 0.85);
+}
+
+.cv-hud {
+  position: absolute;
+  left: 16px;
+  bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  padding: 4px;
+  border-radius: var(--radius-pill, 18px);
+  background: var(--bg-elevated, #fff);
+  border: 0.5px solid var(--line-1, rgba(0, 0, 0, 0.08));
+  box-shadow: var(--shadow-float);
+  cursor: default;
+}
+
+.cv-btn {
+  display: inline-grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border: 0;
+  border-radius: 14px;
+  background: transparent;
+  color: var(--text-2, #5f5f5f);
+  font-size: 15px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.cv-btn:hover { background: var(--bg-hover, rgba(0, 0, 0, 0.045)); color: var(--text-1, #1a1a1a); }
+
+.cv-zoom {
+  min-width: 46px;
+  text-align: center;
+  font-size: 12px;
+  color: var(--text-2, #5f5f5f);
+  font-variant-numeric: tabular-nums;
+}
+
+.cv-fit {
+  height: 28px;
+  padding: 0 10px;
+  border: 0;
+  border-radius: 14px;
+  background: transparent;
+  color: var(--text-2, #5f5f5f);
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.cv-fit:hover { background: var(--bg-hover, rgba(0, 0, 0, 0.045)); color: var(--text-1, #1a1a1a); }
+
+.cv-hint {
+  position: absolute;
+  right: 16px;
+  bottom: 20px;
+  font-size: 11px;
+  color: var(--text-3, #999);
+  pointer-events: none;
+}

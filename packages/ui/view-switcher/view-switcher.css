@@ -1,0 +1,69 @@
+/* ══ 顶部胶囊 ═══════════════════════════════════════════════
+   尺寸全部来自规范 §7.1：240×36 / 圆角 18 / 三段 76×28。
+   内部只用 token，不出现 hex 与裸数值以外的视觉值。
+   ------------------------------------------------------------ */
+
+.vs {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  padding: 4px;
+  height: 36px;
+  border-radius: 18px;
+  background: var(--bg-elevated, #ffffff);
+  border: 0.5px solid var(--line-1, rgba(26, 26, 24, 0.08));
+  box-shadow: var(--shadow-float, 0 1px 2px rgba(0, 0, 0, 0.04), 0 8px 24px rgba(0, 0, 0, 0.06));
+}
+
+.vs-seg {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 76px;
+  height: 28px;
+  padding: 0;
+  border: 0;
+  border-radius: 14px;
+  background: transparent;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* 滑块：只在当前项渲染，由 layoutId 负责从旧位置飞过来 */
+.vs-pill {
+  position: absolute;
+  inset: 0;
+  border-radius: 14px;
+  background: var(--text-1, #1a1a1a);
+  pointer-events: none;
+}
+
+.vs-label {
+  position: relative;
+  z-index: 1;
+  font-family: var(--font-sans, "Segoe UI Variable", "PingFang SC", "Microsoft YaHei", sans-serif);
+  font-size: 12px;
+  line-height: 1;
+  font-weight: 500;
+  color: var(--text-2, #5f5e5a);
+  transition: color 140ms var(--ease-standard, cubic-bezier(0.2, 0, 0, 1));
+}
+
+.vs-seg[data-active] .vs-label {
+  color: #ffffff;
+}
+
+/* 焦点与选中用「同色不同形」：选中是填充，焦点是外偏移环，不引入第二种颜色 */
+.vs-seg:focus-visible {
+  outline: 2px solid var(--selection-ring, #1a1a1a);
+  outline-offset: 2px;
+}
+
+.vs-seg:hover:not([data-active]) .vs-label {
+  color: var(--text-1, #1a1a1a);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vs-label { transition: none; }
+}

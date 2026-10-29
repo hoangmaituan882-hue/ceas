@@ -1,0 +1,87 @@
+/* ══ 吉祥物 · 眼珠球 ═════════════════════════════════════════
+   颜色全部走设计 token，不写死：
+   ink  = 近黑身体 + 暖白眼睛（默认，用于亮色界面、空态、关于页）
+   paper= 浅色身体 + 墨色眼睛（用于深色底、深色启动图）
+   ------------------------------------------------------------ */
+
+.eyt {
+  position: relative;
+  display: inline-grid;
+  place-items: center;
+  width: var(--eyt-size, 96px);
+  height: var(--eyt-size, 96px);
+}
+
+.eyt-ball {
+  width: var(--eyt-size, 96px);
+  height: var(--eyt-size, 96px);
+  overflow: visible;
+}
+
+/* 身体与眼睛互为反色：一颗球，两个洞 */
+.eyt[data-tone="ink"] .eyt-body { fill: var(--text-1, #1a1a1a); }
+.eyt[data-tone="ink"] .eyt-eye { fill: var(--bg-app, #fafafa); }
+.eyt[data-tone="paper"] .eyt-body { fill: var(--bg-elevated, #ffffff); }
+.eyt[data-tone="paper"] .eyt-eye { fill: var(--text-1, #1a1a1a); }
+
+/* 可点：给一点按下的反馈，松手弹回。
+   时长与曲线走规范的快档与弹簧档。 */
+.eyt-ball[data-poke] {
+  cursor: pointer;
+  transform-origin: center;
+  transition: scale 280ms var(--ease-spring, cubic-bezier(0.24, 1.34, 0.38, 1));
+  -webkit-tap-highlight-color: transparent;
+}
+.eyt-ball[data-poke]:active {
+  scale: 0.96;
+  transition-duration: 140ms;
+  transition-timing-function: var(--ease-standard, cubic-bezier(0.2, 0, 0, 1));
+}
+
+/* ── 对话气泡 ────────────────────────────────────────────
+   只有 chatter 打开时才出现；单色，不用随机色调 ——
+   产品的强调色只用于状态，吉祥物不开例外。 */
+.eyt-say {
+  position: absolute;
+  left: calc(50% + var(--eyt-size, 96px) * 0.34);
+  top: calc(50% + var(--eyt-size, 96px) * 0.28);
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  min-height: 34px;
+  padding: 0 14px;
+  border-radius: 6px 10px 10px 10px;
+  background: var(--text-1, #1a1a1a);
+  color: var(--bg-app, #fafafa);
+  font-family: var(--font-sans, "Segoe UI Variable", "PingFang SC", "Microsoft YaHei", sans-serif);
+  font-size: 12px;
+  line-height: 1.45;
+  white-space: nowrap;
+  transform-origin: top left;
+  opacity: 0;
+  scale: 0.9;
+  pointer-events: none;
+  transition:
+    opacity 140ms var(--ease-standard, cubic-bezier(0.2, 0, 0, 1)),
+    scale 200ms var(--ease-spring, cubic-bezier(0.24, 1.34, 0.38, 1));
+}
+.eyt-say[data-on] { opacity: 1; scale: 1; }
+
+.eyt-caret {
+  width: 1.5px;
+  height: 12px;
+  border-radius: 1px;
+  background: currentColor;
+  animation: eyt-caret 1s steps(1) infinite;
+}
+
+@keyframes eyt-caret {
+  50% { opacity: 0; }
+}
+
+/* 降低动效：光标跟随已经由组件内部关掉，这里再去掉按压与光标闪烁 */
+@media (prefers-reduced-motion: reduce) {
+  .eyt-ball[data-poke] { transition: none; }
+  .eyt-say { transition: opacity 140ms linear; scale: 1; }
+  .eyt-caret { animation: none; }
+}

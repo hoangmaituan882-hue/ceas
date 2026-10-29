@@ -1,0 +1,24 @@
+{
+  "name": "@ceas/ui",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./index.ts",
+    "./icons": "./icons.tsx",
+    "./motion-tokens": "./motion-tokens.ts",
+    "./view-switcher/view-switcher": "./view-switcher/view-switcher.tsx",
+    "./view-switcher/view-switcher.css": "./view-switcher/view-switcher.css",
+    "./mascot/mascot": "./mascot/mascot.tsx",
+    "./mascot/mascot.css": "./mascot/mascot.css"
+  },
+  "dependencies": {
+    "motion": "^12.42.2",
+    "react": "^19.2.8"
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.17",
+    "@types/react-dom": "^19.2.3",
+    "akar-icons": "^1.9.31"
+  }
+}
