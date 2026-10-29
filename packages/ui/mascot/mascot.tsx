@@ -49,7 +49,7 @@ const stillMotion = () =>
   !!window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
 
 export type MascotProps = {
-  /** 边长，px，16–180 */
+  /** 显式边长，px，16–180；不给时跟密度 token --mascot-size（默认 96） */
   size?: number;
   /** 身体轮廓 */
   shape?: "Cube" | "Ball" | "Pitch";
@@ -65,12 +65,12 @@ export type MascotProps = {
   chatter?: boolean;
   /** ink = 近黑身体白眼；paper = 浅色身体墨眼 */
   tone?: "ink" | "paper";
-  /** 只在哪个容器内注视，默认 [data-mascot-frame]，再退回自身 */
+  /** 只在哪个容器内注视；不给时追整块视口，给了 within 或祖先带 [data-mascot-frame] 才按容器裁 */
   within?: string;
 };
 
 export function Mascot({
-  size = 96,
+  size,
   shape = "Cube",
   eyes = "auto",
   follow = 60,
@@ -80,7 +80,7 @@ export function Mascot({
   tone = "ink",
   within,
 }: MascotProps) {
-  const s = clamp(size, 16, 180);
+  const s = size === undefined ? 96 : clamp(size, 16, 180);
   const eyeStyle = eyes === "auto" ? (s < 32 ? "Dots" : "Slant") : eyes;
   const base: EyeSize = EYE_STYLES[eyeStyle] ?? { w: 9, h: 15, r: 4.5 };
 
@@ -254,35 +254,41 @@ export function Mascot({
     document.addEventListener("visibilitychange", resume);
 
     /* ── 脸跟着你走 ─────────────────────────────────────────
-       指针在哪个容器里，就在哪个容器里追；离开容器立刻回正 ——
-       一墙的吉祥物同时跟着一个路过的光标会变成噪音。 */
-    const frame =
+       默认追整块视口。之前默认退回吉祥物自己的盒子，等于「鼠标压上去
+       才动」，看上去就是眼睛不跟手。只有显式给了 within 或祖先带
+       [data-mascot-frame] 时才按容器裁 —— 一墙的吉祥物同时跟一个
+       路过的光标会变成噪音。 */
+    const scope =
       (within ? el.closest<HTMLElement>(within) : null) ??
-      el.closest<HTMLElement>("[data-mascot-frame]") ??
-      el;
+      el.closest<HTMLElement>("[data-mascot-frame]");
+
+    const rest = () => { t.tx = 0; t.ty = 0; wake(); };
 
     const aim = (e: PointerEvent) => {
-      const f = frame.getBoundingClientRect();
-      if (e.clientX < f.left || e.clientX > f.right || e.clientY < f.top || e.clientY > f.bottom) {
-        t.tx = 0;
-        t.ty = 0;
-        wake();
-        return;
+      if (scope) {
+        const f = scope.getBoundingClientRect();
+        if (e.clientX < f.left || e.clientX > f.right || e.clientY < f.top || e.clientY > f.bottom) {
+          rest();
+          return;
+        }
       }
       const r = el.getBoundingClientRect();
       const dx = e.clientX - (r.left + r.width / 2);
       const dy = e.clientY - (r.top + r.height / 2);
       const dist = Math.hypot(dx, dy) || 1;
-      const reach = Math.max(60, Math.min(f.width, f.height) * 0.28);
+      /* 量程按视口短边算：固定 60px 量程时鼠标稍一离开球体，视线就顶到
+         边缘不再变化，看起来像死住了。视口量程让整块窗口内的移动连续可读 */
+      const reach = Math.max(180, Math.min(window.innerWidth, window.innerHeight) * 0.45);
       const far = Math.min(
         0.85,
         Math.tanh(dist / reach) * (clamp(knobs.current.follow, 0, 100) / 100) * 1.5,
       );
+
       t.tx = (dx / dist) * far;
       t.ty = (dy / dist) * far;
+
       wake();
     };
-    const rest = () => { t.tx = 0; t.ty = 0; wake(); };
 
     /* ── idle：直视前方，每 5 秒瞥一眼 ──────────────────── */
     let glance = 0;
@@ -319,7 +325,7 @@ export function Mascot({
   const body = SHAPES[shape] ?? SHAPES.Cube;
 
   return (
-    <div className="eyt" ref={box} data-tone={tone} style={{ "--eyt-size": `${s}px` } as CSSProperties}>
+    <div className="eyt" ref={box} data-tone={tone} style={size === undefined ? undefined : ({ "--eyt-size": `${s}px` } as CSSProperties)}>
       <svg
         className="eyt-ball"
         viewBox="0 0 100 100"

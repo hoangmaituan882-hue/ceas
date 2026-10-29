@@ -8,13 +8,15 @@
   position: relative;
   display: inline-grid;
   place-items: center;
-  width: var(--eyt-size, 96px);
-  height: var(--eyt-size, 96px);
+  /* 显式 size 走 --eyt-size；没给就跟密度 token 走，
+     空态、欢迎页和不同密度下的观感由同一处决定 */
+  width: var(--eyt-size, var(--mascot-size, 96px));
+  height: var(--eyt-size, var(--mascot-size, 96px));
 }
 
 .eyt-ball {
-  width: var(--eyt-size, 96px);
-  height: var(--eyt-size, 96px);
+  width: var(--eyt-size, var(--mascot-size, 96px));
+  height: var(--eyt-size, var(--mascot-size, 96px));
   overflow: visible;
 }
 

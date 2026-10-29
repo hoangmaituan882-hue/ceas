@@ -52,6 +52,7 @@
   --font-sub: 11px;
   --rail-row: 28px;
   --icon: 16px;
+  --mascot-size: 80px;
 }
 
 [data-density="standard"] {
@@ -62,6 +63,7 @@
   --font-sub: 12px;
   --rail-row: 32px;
   --icon: 20px;
+  --mascot-size: 96px;
 }
 
 [data-density="airy"] {
@@ -72,6 +74,7 @@
   --font-sub: 13px;
   --rail-row: 40px;
   --icon: 20px;
+  --mascot-size: 112px;
 }
 
 /* 暗色：同色系反向，同样中性 */

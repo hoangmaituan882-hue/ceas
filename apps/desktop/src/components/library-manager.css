@@ -8,7 +8,7 @@
 .library-space strong { font-weight: 500; }
 .library-space p { margin: 0; }
 .library-intro { padding-block: calc(var(--grid-gap) * 2); display: grid; justify-items: center; gap: var(--grid-gap); text-align: center; }
-.library-mascot { width: calc(var(--grid-gap) * 6); height: calc(var(--grid-gap) * 6); display: grid; place-items: center; }
+.library-mascot { width: var(--mascot-size); height: var(--mascot-size); display: grid; place-items: center; }
 .library-options { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--grid-gap); }
 .library-option, .library-card { border: calc(var(--radius-thumb) / 8) solid var(--line-1); border-radius: var(--radius-panel); background: var(--bg-elevated); padding: calc(var(--grid-gap) * 1.5); text-align: left; }
 .library-option { display: flex; flex-direction: column; align-items: start; gap: var(--grid-gap); min-width: 0; cursor: pointer; font: inherit; color: inherit; }
